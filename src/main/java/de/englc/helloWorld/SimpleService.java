@@ -10,7 +10,21 @@ import java.util.List;
 
 @RestController
 public class SimpleService {
+/*
+        @RequestMapping(method =  RequestMethod.POST, path = "/integration/ownerCompany",
+            consumes = "application/json")
+    public ResponseEntity<CreateOwnerCompanyOut> createOwnerCompany(@RequestBody CreateOwnerCompanyIn ownerCompanyIn){
 
+
+    @RequestMapping(method =  RequestMethod.PUT, path = "/integration/ownerCompany/{uuid}",
+            consumes = "application/json")
+    public ResponseEntity<UpdateOwnerCompanyS4Out> updateOwnerCompany(
+            @RequestBody UpdateOwnerCompanyS4In ownerCompanyIn, @PathVariable("uuid") String uuid){
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "/integration/missingConfigurationCount",
+            produces = "application/json")
+    */
     @RequestMapping(method = RequestMethod.GET, path = "/give")
     public ResponseEntity<String> getSomething() {
 
