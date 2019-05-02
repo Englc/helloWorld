@@ -24,11 +24,15 @@ public class HelloWorldApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	private SimpleService simpleService;
+    @Autowired
+    private TextDomain simpleDomain;
+
+    @Autowired
+    private TextService simpleService;
 
 	@Before
 	public void setup() {
-		simpleService = new SimpleService();
+
 	}
 
 	@Test
@@ -38,7 +42,7 @@ public class HelloWorldApplicationTests {
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/give"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$", is("This is some text")));
+				.andExpect(MockMvcResultMatchers.jsonPath("$", is("This is some text Adjusted")));
 	}
 
 	@Test
@@ -50,13 +54,15 @@ public class HelloWorldApplicationTests {
 		// Then
 		System.out.println(results.andReturn().getResponse().getContentAsString());
 		results.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.[*]", contains("This is some text")));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[*]", contains("This is some text Adjusted")));
 	}
 
 	@Test
 	public void testGetText() {
 
-		assertEquals("This is some text", simpleService.getText());
+        assertEquals("This is some text", simpleDomain.get());
+        assertEquals("This is some text Adjusted", simpleService.getText());
+        assertNotEquals(simpleDomain.get(), simpleService.getText());
 
 	}
 

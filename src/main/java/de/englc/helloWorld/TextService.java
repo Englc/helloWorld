@@ -10,6 +10,6 @@ public class TextService {
     private TextDomain textDomain;
 
     public String getText() {
-        return textDomain.get();
+        return textDomain.get() + " Adjusted";
     }
 }
