@@ -1,5 +1,6 @@
 package de.englc.helloWorld;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +11,10 @@ import java.util.List;
 
 @RestController
 public class SimpleService {
+
+    @Autowired
+    private TextService textService;
+
 /*
         @RequestMapping(method =  RequestMethod.POST, path = "/integration/ownerCompany",
             consumes = "application/json")
@@ -28,18 +33,14 @@ public class SimpleService {
     @RequestMapping(method = RequestMethod.GET, path = "/give")
     public ResponseEntity<String> getSomething() {
 
-        return ResponseEntity.ok().body(getText());
+        return ResponseEntity.ok().body(textService.getText());
 
-    }
-
-    String getText() {
-        return "This is some text";
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/giveList")
     public ResponseEntity<List<String>> getAList() {
 
-        return ResponseEntity.ok().body(Arrays.asList(getText()));
+        return ResponseEntity.ok().body(Arrays.asList(textService.getText()));
 
     }
 
